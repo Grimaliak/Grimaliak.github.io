@@ -45,36 +45,68 @@ export default function OneCommentCard({ comment, updateTotalLikes, isParentComm
   };
 
   return (
-    <Card
+    <Card variant="outlined"
     sx={{
       display: 'flex',
-      width: '600px',
-      margin: 0,
+      flexDirection: 'column',
+      maxWidth: isChildComment ? '528px' : '561px',
       position: 'relative',
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-      maxWidth: isChildComment ? '90%' : '100%',
-      marginLeft: isChildComment ? 'auto' : 0,
-      marginBottom: 1,
+      boxShadow: 'none',
+      border: 'none',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+      marginLeft: isChildComment ? '34px' : 0,
+      '@media (max-width: 320px)': {
+        maxWidth: isChildComment ? '252px' : '272px',
+        marginLeft: isChildComment ? '20px' : 0,
+        }
     }}
   >
-      <Avatar src={author?.avatar} sx={{ width: 50, height: 50, margin: 2 }} />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" gutterBottom style={{color: 'white'}}>
+      <CardContent sx={{padding: 0}}>
+        <Box sx={{display: 'flex', justifyContent: 'space-between' }}> 
+          <Box sx={{display: 'flex'}}>
+          <Box>
+          <Avatar src={author?.avatar} sx={{ width: 68, height: 68, marginRight: '20px', 
+          '@media (max-width: 320px)': {
+            width: '40px',
+            height: '40px',
+            } }} />
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>     
+        <Typography variant="body2" color="textSecondary" gutterBottom sx={{color: 'white', fontFamily: 'Lato, sans-serif', fontWeight: 'bold', fontSize: '16', marginBottom: 0,
+            '@media (max-width: 320px)': {
+              fontSize: '14',
+              }
+          }}>
           {author?.name}
         </Typography>
-        <Typography variant="body2" color="textSecondary" gutterBottom style={{color: 'white'}}>
+        <Typography variant="body2" color="textSecondary" gutterBottom sx={{color: '#8297AB', fontFamily: 'Lato, sans-serif', fontWeight: '400', fontSize: '16', marginBottom: 0,
+          '@media (max-width: 320px)': {
+            fontSize: '14',
+            }
+          }}>
           {correctDate(comment.created)}
         </Typography>
-        <Typography variant="body2" color="textPrimary" gutterBottom style={{ whiteSpace: 'pre-line', wordBreak: 'break-word', color: 'white'}}>
-          {comment.text}
-        </Typography>
-        <Box style={{ position: 'absolute', top: '35px', right: '5%', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center' }} onClick={toggleLike}>
-          {liked ? <FavoriteIcon color="error" fontSize="small" /> : <FavoriteBorderIcon color="error" fontSize="small" />}
-          <Typography variant="body2" color="textSecondary" sx={{ ml: 0.5, color: 'white'}}>
+          </Box>
+          </Box>
+        <Box style={{ display: 'flex', alignItems: 'center' }} onClick={toggleLike}>
+          {liked ? <FavoriteIcon color="error" fontSize="small" sx={{ width: 22, height: 22, marginRight: '8px', '@media (max-width: 320px)': { width: 20, height: 20 }}} /> : <FavoriteBorderIcon color="error" fontSize="small" sx={{ width: 22, height: 22, marginRight: '8px', '@media (max-width: 320px)': { width: 20, height: 20 } }}/>}
+          <Typography variant="body2" color="textSecondary" sx={{ fontFamily: 'Lato, sans-serif', fontWeight: 'bold', fontSize: '15', color: 'white',
+              '@media (max-width: 320px)': {
+              fontSize: '14',
+              }
+          }}>
             {comment.likes}
           </Typography>
         </Box>
+        </Box>
       </CardContent>
+        <Typography variant="body2" color="textPrimary" gutterBottom sx={{ fontFamily: 'Lato, sans-serif', fontWeight: '400', fontSize: '16', whiteSpace: 'pre-line', wordBreak: 'break-word', color: 'white', marginLeft: '88px', marginBottom: 0,
+          '@media (max-width: 320px)': {
+            marginLeft: '60px',
+            }
+          }}>
+          {comment.text}
+        </Typography>
     </Card>
   );
 }

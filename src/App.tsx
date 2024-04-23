@@ -1,6 +1,6 @@
 import React from "react";
 import CommentsPage from "../src/components/pages/CommentsPage";
-import backgroundImg from "../src/assets/backgroundImg.jpeg";
+import backgroundImg from "../src/assets/background.png";
 
 function App() {
 
